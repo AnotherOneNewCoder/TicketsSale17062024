@@ -13,12 +13,21 @@ import ru.zhogin.app.api.models.musicfly.OffersDTO
 import ru.zhogin.app.api.models.tickets.TicketsDTO
 
 interface TicketsApi {
-    @GET
-    suspend fun getMusicFly() : Result<OffersDTO>
-    @GET
-    suspend fun getDirects() : Result<TicketOffersDTO>
+//    @GET
+//    suspend fun getMusicFly() : Result<OffersDTO>
+//    @GET
+//    suspend fun getDirects() : Result<TicketOffersDTO>
     @GET
     suspend fun getTickets() : Result<TicketsDTO>
+}
+interface MusicflyApi {
+    @GET
+    suspend fun getMusicFly() : Result<OffersDTO>
+}
+
+interface DirectsApi {
+    @GET
+    suspend fun getDirects() : Result<TicketOffersDTO>
 }
 
 fun TicketsApi(
@@ -26,6 +35,21 @@ fun TicketsApi(
     okHttpClient: OkHttpClient? = null,
     json: Json = Json
 ) : TicketsApi {
+    return  retrofit(baseUrl, okHttpClient, json).create()
+}
+fun DirectsApi(
+    baseUrl: String,
+    okHttpClient: OkHttpClient? = null,
+    json: Json = Json
+) : DirectsApi {
+    return  retrofit(baseUrl, okHttpClient, json).create()
+}
+
+fun MusicflyApi(
+    baseUrl: String,
+    okHttpClient: OkHttpClient? = null,
+    json: Json = Json
+) : MusicflyApi {
     return  retrofit(baseUrl, okHttpClient, json).create()
 }
 

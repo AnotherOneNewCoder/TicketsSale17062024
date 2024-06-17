@@ -23,3 +23,4 @@ rootProject.name = "TicketsSale17062024"
 include(":app")
 include(":app-api")
 include(":app-database")
+include(":app-data")
