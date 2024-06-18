@@ -74,6 +74,7 @@ dependencies {
 
     implementation(project(":app-api"))
     implementation(project(":app-database"))
+    implementation(project(":app-uikit"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

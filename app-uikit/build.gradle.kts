@@ -1,11 +1,10 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrains.kotlin.android)
-
 }
 
 android {
-    namespace = "ru.zhogin.app_data"
+    namespace = "ru.zhogin.app.uikit"
     compileSdk = 34
 
     defaultConfig {
@@ -25,20 +24,30 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 }
 
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.javax.inject)
-    implementation(project(":app-database"))
-    implementation(project(":app-api"))
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
+
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 
 }

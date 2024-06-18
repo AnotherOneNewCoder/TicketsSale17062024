@@ -10,41 +10,33 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.onEach
-import ru.zhogin.app.api.DirectsApi
-import ru.zhogin.app.api.MusicflyApi
 import ru.zhogin.app.api.TicketsApi
-import ru.zhogin.app.api.models.musicfly.OfferDTO
+import ru.zhogin.app.api.models.tickets.TicketDTO
 import ru.zhogin.app.database.TicketsDatabase
-import ru.zhogin.app.database.models.musicfly.OfferDBO
-import ru.zhogin.app_data.models.directs.TicketOffer
-import ru.zhogin.app_data.models.directs.TicketOffers
-import ru.zhogin.app_data.models.musicfly.Offer
-import ru.zhogin.app_data.models.musicfly.Offers
+import ru.zhogin.app.database.models.tickets.TicketDBO
 import ru.zhogin.app_data.models.tickets.Ticket
 import ru.zhogin.app_data.models.tickets.Tickets
 import javax.inject.Inject
 
 class TicketsRepository @Inject constructor(
     private val database: TicketsDatabase,
-    private val musicflyApi: MusicflyApi,
-    private val directsApi: DirectsApi,
     private val ticketsApi: TicketsApi,
-
     ) {
-
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getMusicfly(
-        mergeStrategy: MergeStrategy<RequestResult<Offers>> = DefaultRequestResponseMereStrategy()
-    ): Flow<RequestResult<Offers>> {
-        val cashedMusicfly = getMusicflyFromDatabase()
-        val remoteMusicfly = getMusicflyFromServer()
+    fun getTickets(
+        mergeStrategy: MergeStrategy<RequestResult<Tickets>> = DefaultRequestResponseMereStrategy()
+    ) : Flow<RequestResult<Tickets>> {
+        val cachedTickets = getTicketsFromDatabase()
+        val remoteTickets = getTicketsFromServer()
 
-        return cashedMusicfly.combine(remoteMusicfly, mergeStrategy::merge)
+        return cachedTickets.combine(remoteTickets, mergeStrategy::merge)
             .flatMapLatest { result ->
                 if (result is RequestResult.Success) {
-                    database.musicflyDao.observeAllOffers()
-                        .map { dbos -> dbos.map { it.toOffer() } }
-                        .map { list -> list.toOffer() }
+                    database.ticketsDao.observeAllOffers()
+                        .map { dbos ->
+                            dbos.map { it.toTicket() }
+                        }
+                        .map { list -> list.toTickets() }
                         .map { RequestResult.Success(it) }
                 } else {
                     flowOf(result)
@@ -52,50 +44,42 @@ class TicketsRepository @Inject constructor(
             }
     }
 
-    private fun getMusicflyFromServer(): Flow<RequestResult<Offers>> {
-        val apiRequest : Flow<RequestResult<Offers>> = flow { emit(musicflyApi.getMusicFly()) }
+    private fun getTicketsFromServer() : Flow<RequestResult<Tickets>> {
+        val apiTickets : Flow<RequestResult<Tickets>> = flow { emit(ticketsApi.getTickets()) }
             .onEach { result ->
                 if (result.isSuccess) {
-                    saveNetMusicflyToCache(result.getOrThrow().offers)
+                    saveNetTicketsToCache(result.getOrThrow().tickets)
                 }
             }
             .map { it.toRequestResult() }
-            .map { it.map { offersDTO -> offersDTO.toOffers() } }
-        val start = flowOf<RequestResult<Offers>>(RequestResult.InProgress())
-        return merge(apiRequest, start)
-
+            .map { it.map { ticketsDTO ->
+                ticketsDTO.toTickets()
+            } }
+        val start = flowOf<RequestResult<Tickets>>(RequestResult.InProgress())
+        return merge(apiTickets, start)
     }
 
-    private suspend fun saveNetMusicflyToCache(offers: List<OfferDTO>) {
-        val dbos = offers.map { offer -> offer.toOfferDBO() }
-        database.musicflyDao.insertOffer(dbos)
+    private suspend fun saveNetTicketsToCache(tickets: List<TicketDTO>) {
+        val dbos = tickets.map { it.toTicketDBO() }
+        database.ticketsDao.insertOffer(dbos)
     }
 
-    private fun getMusicflyFromDatabase(): Flow<RequestResult<Offers>> {
-        val dbRequest = database.musicflyDao::getAllOffers.asFlow()
-            .map<List<OfferDBO>, RequestResult<List<OfferDBO>>> { RequestResult.Success(it) }
-        val start = flowOf<RequestResult<List<OfferDBO>>>(RequestResult.InProgress())
+    private fun getTicketsFromDatabase() : Flow<RequestResult<Tickets>> {
+        val dbRequest = database.ticketsDao::getAllOffers.asFlow()
+            .map<List<TicketDBO>, RequestResult<List<TicketDBO>>> { RequestResult.Success(it) }
+        val start = flowOf<RequestResult<List<TicketDBO>>>(RequestResult.InProgress())
         return merge(start, dbRequest)
             .map { result ->
-                result.map { offerDBOs->
-                    offerDBOs.map { it.toOffer() }
+                result.map { ticketDBOS ->
+                    ticketDBOS.map { it.toTicket() }
                 }
             }
             .map { result ->
-                result.map { list ->
-                    list.toOffer()
-                }
+                result.map { it.toTickets() }
             }
     }
 }
 
-private fun List<Offer>.toOffer() : Offers {
-    return Offers(offers = this)
-}
-
-private fun List<TicketOffer>.toTicketsOffers() : TicketOffers {
-    return TicketOffers(ticketsOffers = this)
-}
 private fun List<Ticket>.toTickets() : Tickets {
     return Tickets(tickets = this)
 }
