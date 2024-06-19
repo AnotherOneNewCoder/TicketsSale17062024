@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.5"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -71,10 +71,12 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.retrofit.adapters.result)
+    implementation(libs.logging.interceptor)
 
     implementation(project(":app-api"))
     implementation(project(":app-database"))
     implementation(project(":app-uikit"))
+    implementation(project(":app-ui"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

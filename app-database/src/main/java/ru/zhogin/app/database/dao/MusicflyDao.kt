@@ -1,11 +1,13 @@
 package ru.zhogin.app.database.dao
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import ru.zhogin.app.database.models.musicfly.OfferDBO
 
+@Dao
 interface MusicflyDao {
 
     @Query("SELECT * FROM music_fly")

@@ -13,20 +13,28 @@ import ru.zhogin.app.api.models.musicfly.OffersDTO
 import ru.zhogin.app.api.models.tickets.TicketsDTO
 
 interface TicketsApi {
-//    @GET
-//    suspend fun getMusicFly() : Result<OffersDTO>
-//    @GET
-//    suspend fun getDirects() : Result<TicketOffersDTO>
-    @GET
+    // since mocky link is dead
+//    @GET("v3/670c3d56-7f03-4237-9e34-d437a9e56ebf")
+//    suspend fun getTickets() : Result<TicketsDTO>
+
+    @GET("uc?export=download&id=1HogOsz4hWkRwco4kud3isZHFQLUAwNBA")
     suspend fun getTickets() : Result<TicketsDTO>
 }
 interface MusicflyApi {
-    @GET
+    // since mocky link is dead
+//    @GET("v3/214a1713-bac0-4853-907c-a1dfc3cd05fd")
+//    suspend fun getMusicFly() : Result<OffersDTO>
+
+    @GET("uc?export=download&id=1o1nX3uFISrG1gR-jr_03Qlu4_KEZWhav")
     suspend fun getMusicFly() : Result<OffersDTO>
 }
 
 interface DirectsApi {
-    @GET
+    // since mocky link is dead
+//    @GET("v3/7e55bf02-89ff-4847-9eb7-7d83ef884017")
+//    suspend fun getDirects() : Result<TicketOffersDTO>
+
+    @GET("uc?export=download&id=13WhZ5ahHBwMiHRXxWPq-bYlRVRwAujta")
     suspend fun getDirects() : Result<TicketOffersDTO>
 }
 

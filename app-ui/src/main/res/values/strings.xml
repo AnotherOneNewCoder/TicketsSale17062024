@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TicketSales18042024</string>
+    <string name="tickets_sale">Поиск дешевых авиабилетов</string>
+    <string name="music_fly">Музыкально отлететь</string>
+    <string name="popular_direction">Популярное направление</string>
+    <string name="field_from_should_be_filled">Field From should be filled!</string>
+    <string name="tiket_back">обратно</string>
+    <string name="pass_and_class">1,эконом</string>
+    <string name="filters">фильтры</string>
+    <string name="direct_flights">Прямые рельсы</string>
+    <string name="show_all">Посмотреть все билеты</string>
+    <string name="one_pass">, 1 пассажир</string>
+    <string name="hour_in_road">ч в пути</string>
+    <string name="without_transfer"> / Без пересадок</string>
+    <string name="filter">Фильтр</string>
+    <string name="prise_graphic">График цен</string>
+    <string name="close_dialog">Вернуться на предыдущий экран?</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="profile">Профиль</string>
+    <string name="follows">Подписки</string>
+    <string name="shots">Короче</string>
+    <string name="hotels">Отели</string>
+</resources>

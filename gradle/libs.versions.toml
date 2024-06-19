@@ -26,6 +26,7 @@ kotlinx-coroutines = "1.8.0"
 annotation = "1.7.1"
 gson_version = "2.10.1"
 javax-inject = "1"
+nav = "2.7.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -71,6 +72,7 @@ kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutine
 androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 google-code-gson = { module = "com.google.code.gson:gson", version.ref = "gson_version" }
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
+androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "nav" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
