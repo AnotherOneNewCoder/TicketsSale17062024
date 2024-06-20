@@ -15,7 +15,7 @@ import ru.zhogin.app.ui.bottomnavbar.BottomBar
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun DefaultScreen(
+internal fun DefaultScreen(
     offers: List<OfferUI>,
     ticketsOffers: List<TicketOfferUI>,
     listTickets: List<TicketUI>,

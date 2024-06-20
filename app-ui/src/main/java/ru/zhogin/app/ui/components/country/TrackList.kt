@@ -29,7 +29,7 @@ internal fun TrackList(destFrom: String, destTo: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 62.dp)
+            //.padding(top = 62.dp)
             .padding(horizontal = 21.dp),
         shape = RoundedCornerShape(21.dp),
         colors = CardDefaults.cardColors(

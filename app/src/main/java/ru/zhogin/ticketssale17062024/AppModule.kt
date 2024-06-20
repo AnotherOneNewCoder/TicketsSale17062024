@@ -38,7 +38,7 @@ object AppModule {
     @Singleton
     fun providesTicketsApi(okHttpClient: OkHttpClient?) : TicketsApi {
         return TicketsApi(
-            baseUrl = BASE_URL_GOOGLE_DRIVE,
+            baseUrl = BASE_URL,
             okHttpClient = okHttpClient,
         )
     }
@@ -46,7 +46,7 @@ object AppModule {
     @Singleton
     fun providesDirectsApi(okHttpClient: OkHttpClient?) : DirectsApi {
         return DirectsApi(
-            baseUrl = BASE_URL_GOOGLE_DRIVE,
+            baseUrl = BASE_URL,
             okHttpClient = okHttpClient
         )
     }
@@ -54,7 +54,7 @@ object AppModule {
     @Singleton
     fun providesMusicflyApi(okHttpClient: OkHttpClient?) : MusicflyApi {
         return MusicflyApi(
-            baseUrl = BASE_URL_GOOGLE_DRIVE,
+            baseUrl = BASE_URL,
             okHttpClient = okHttpClient
         )
     }
@@ -65,11 +65,5 @@ object AppModule {
     }
 }
 
-private const val MUSIC_FLY_URL = "https://run.mocky.io/v3/214a1713-bac0-4853-907c-a1dfc3cd05fd"
-private const val MUSIC_FLY_URL_GOOGLE_DRIVE = "https://drive.google.com/uc?export=download&id=1o1nX3uFISrG1gR-jr_03Qlu4_KEZWhav"
-private const val DIRECTS_URL = "https://run.mocky.io/v3/7e55bf02-89ff-4847-9eb7-7d83ef884017"
-private const val DIRECTS_URL_GOOGLE_DRIVE = "https://drive.google.com/uc?export=download&id=13WhZ5ahHBwMiHRXxWPq-bYlRVRwAujta"
-private const val TICKETS_URL = "https://run.mocky.io/v3/670c3d56-7f03-4237-9e34-d437a9e56ebf"
-private const val TICKETS_URL_GOOGLE_DRIVE = "https://drive.google.com/uc?export=download&id=1HogOsz4hWkRwco4kud3isZHFQLUAwNBA"
 private const val BASE_URL = "https://run.mocky.io/"
 private const val BASE_URL_GOOGLE_DRIVE = "https://drive.google.com/"

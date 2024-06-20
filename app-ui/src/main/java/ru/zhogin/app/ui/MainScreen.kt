@@ -48,7 +48,7 @@ internal fun MainScreen(
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MainContent(stateMusicfly: StateMusicfly, stateDirects: StateDirects, stateTickets: StateTickets) {
+internal fun MainContent(stateMusicfly: StateMusicfly, stateDirects: StateDirects, stateTickets: StateTickets) {
     if (stateMusicfly is StateMusicfly.Error || stateDirects is StateDirects.Error || stateTickets is StateTickets.Error) {
         ErrorMessage()
     }

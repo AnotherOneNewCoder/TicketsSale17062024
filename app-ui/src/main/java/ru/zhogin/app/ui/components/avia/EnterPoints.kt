@@ -3,7 +3,6 @@ package ru.zhogin.app.ui.components.avia
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -13,13 +12,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material.Card
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -33,7 +31,7 @@ import ru.zhogin.app.uikit.StrokeColor
 import ru.zhogin.app.uikit.Text1
 
 @Composable
-fun EnterPoints(
+internal fun EnterPoints(
     from: String,
     changeFrom: (String) -> Unit,
     to: String,
@@ -46,20 +44,13 @@ fun EnterPoints(
             .padding(horizontal = 21.dp)
             .height(163.dp),
         shape = RoundedCornerShape(21.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = FirstEnterCardColor
-        ),
-
+        backgroundColor = FirstEnterCardColor
     ) {
         Card(
-            modifier = Modifier.padding(21.dp).fillMaxSize(),
+            modifier = Modifier.padding(21.dp),
             shape = RoundedCornerShape(21.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = SecondEnterCardColor
-            ),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 10.dp
-            )
+            backgroundColor = SecondEnterCardColor,
+            elevation = 10.dp
         ) {
             Row {
                 IconButton(

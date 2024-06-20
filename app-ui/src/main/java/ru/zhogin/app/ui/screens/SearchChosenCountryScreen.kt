@@ -44,6 +44,7 @@ fun SearchChosenCountryScreen(
     destinationTo: String,
     ticketsOffers: List<TicketOfferUI>,
     onClickShowAllTickets: (String, String, LocalDate) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     var destFrom by rememberSaveable {
         mutableStateOf(destinationFrom)
@@ -73,9 +74,9 @@ fun SearchChosenCountryScreen(
             if (whichDate) date = dateSelected else dateBack = dateSelected
         })
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
-            .padding(bottom = 80.dp)
+            //.padding(bottom = 80.dp)
             .background(Color.Black)
             //.verticalScroll(rememberScrollState()),
         ) {
