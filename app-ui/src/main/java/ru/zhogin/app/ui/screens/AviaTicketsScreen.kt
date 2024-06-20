@@ -4,7 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -79,10 +79,11 @@ fun AviaTicketsScreen(
 
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .fillMaxWidth()
+          //  .fillMaxSize()
             .padding(bottom = 80.dp)
-            .background(Color.Black)
-            .verticalScroll(rememberScrollState()),
+            .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(37.dp))

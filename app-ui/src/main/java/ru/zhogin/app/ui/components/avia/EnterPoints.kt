@@ -52,7 +52,7 @@ fun EnterPoints(
 
     ) {
         Card(
-            modifier = Modifier.fillMaxSize().padding(21.dp),
+            modifier = Modifier.padding(21.dp).fillMaxSize(),
             shape = RoundedCornerShape(21.dp),
             colors = CardDefaults.cardColors(
                 containerColor = SecondEnterCardColor
