@@ -56,5 +56,5 @@ dependencies {
     implementation(libs.androidx.datastore)
     implementation(libs.compose.dialogs.core)
     implementation(libs.compose.dialogs.calendar)
-    implementation(libs.material)
+    implementation(libs.androidx.compose.material)
 }

@@ -4,7 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -34,9 +34,10 @@ import ru.zhogin.app.ui.datasore.data.SettingsData
 import ru.zhogin.app.ui.dialog.SearchScreenDialog
 
 @Composable
-fun AviaTicketsScreen(
+internal fun AviaTicketsScreen(
     offers: List<OfferUI>,
     onScreenChosenCounty: (String, String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
 
     val listMusicFly = listOf(
@@ -78,12 +79,11 @@ fun AviaTicketsScreen(
     }
 
     Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .fillMaxWidth()
-          //  .fillMaxSize()
-            .padding(bottom = 80.dp)
-            .background(Color.Black),
+        modifier = modifier
+            .fillMaxSize()
+//            .padding(bottom = 72.dp)
+            .background(Color.Black)
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(37.dp))

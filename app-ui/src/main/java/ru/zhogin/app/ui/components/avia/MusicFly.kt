@@ -4,15 +4,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.Icon
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -26,7 +25,7 @@ import ru.zhogin.app.uikit.Title3
 import ru.zhogin.app.uikit.Title4
 
 @Composable
-fun MusicFly(offer: OfferUI, image: Int) {
+internal fun MusicFly(offer: OfferUI, image: Int) {
     Column(
         modifier = Modifier.padding(start = if (offer.id != 1) 89.dp else 0.dp)
     ) {
@@ -36,8 +35,7 @@ fun MusicFly(offer: OfferUI, image: Int) {
         ) {
             Image(
                 painter = painterResource(id = image), contentDescription = "image",
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier.fillMaxSize()
+                contentScale = ContentScale.FillBounds
             )
         }
         Spacer(modifier = Modifier.height(11.dp))

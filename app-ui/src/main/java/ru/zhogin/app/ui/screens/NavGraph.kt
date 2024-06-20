@@ -34,13 +34,13 @@ import ru.zhogin.app.features.models.directs.TicketOfferUI
 import ru.zhogin.app.features.models.musicfly.OfferUI
 import ru.zhogin.app.features.models.tickets.TicketUI
 import ru.zhogin.app.ui.R
-import ru.zhogin.app.ui.bottomnavbar.BottomNavigationItem
+
 import ru.zhogin.app.uikit.Title1
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun NavGraph(
+internal fun NavGraph(
     navHostController: NavHostController,
     paddingValues: PaddingValues,
     offers: List<OfferUI>,
@@ -85,7 +85,8 @@ fun NavGraph(
                 destFrom = from
                 destTo = to
                 navHostController.navigate(NavigationScreens.SearchChosenCountry.route)
-            })
+            },
+                modifier = Modifier.padding(paddingValues))
         }
         composable(NavigationScreens.Hotels.route) {
             HotelsScreen()
@@ -106,19 +107,22 @@ fun NavGraph(
                     destFrom = from
                     date = dateDep
                     navHostController.navigate(NavigationScreens.AllTicketsScreen.route)
-                })
+                },
+                modifier = Modifier.padding(paddingValues)
+            )
         }
         composable(NavigationScreens.AllTicketsScreen.route) {
             AllTicketsScreen(destFrom = destFrom, destTo = destTo, date = date, onClick = {
                 navHostController.navigateUp()
-            }, listTickets = listTickets)
+            }, listTickets = listTickets,
+                modifier = Modifier.padding(paddingValues))
         }
     }
 }
 
 
 @Composable
-fun ProfileScreen() {
+internal fun ProfileScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -135,7 +139,7 @@ fun ProfileScreen() {
 }
 
 @Composable
-fun FollowsScreen() {
+internal fun FollowsScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -151,7 +155,7 @@ fun FollowsScreen() {
 }
 
 @Composable
-fun ShortScreen() {
+internal fun ShortScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -167,7 +171,7 @@ fun ShortScreen() {
 }
 
 @Composable
-fun HotelsScreen() {
+internal fun HotelsScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
