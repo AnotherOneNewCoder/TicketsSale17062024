@@ -14,6 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -31,7 +32,8 @@ internal fun MusicFly(offer: OfferUI, image: Int) {
     ) {
         Card(
             modifier = Modifier.size(176.dp),
-            shape = RoundedCornerShape(21.dp)
+            shape = RoundedCornerShape(21.dp),
+            backgroundColor = Color.Black
         ) {
             Image(
                 painter = painterResource(id = image), contentDescription = "image",

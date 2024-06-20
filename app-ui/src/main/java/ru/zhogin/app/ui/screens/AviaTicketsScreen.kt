@@ -41,9 +41,9 @@ internal fun AviaTicketsScreen(
 ) {
 
     val listMusicFly = listOf(
-        R.drawable.music_first,
+        R.drawable.music_first_new,
         R.drawable.music_second,
-        R.drawable.music_third,
+        //R.drawable.music_third,
     )
     var from by rememberSaveable {
         mutableStateOf("")
@@ -115,7 +115,7 @@ internal fun AviaTicketsScreen(
         LazyRow(
             modifier = Modifier.padding(horizontal = 16.dp)
         ) {
-            items(offers.size) { count ->
+            items(listMusicFly.size) { count ->
                 MusicFly(offers[count], listMusicFly[count])
             }
         }
